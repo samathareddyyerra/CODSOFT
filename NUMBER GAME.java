@@ -23,16 +23,21 @@ public class numberGame {
 
             while (atmp < attemptsLimit && !correctGuess) {
                 System.out.print("Enter your guess:");
-                int userGuess = scanner.nextInt();
-                atmp++;
+                try {
+                    int userGuess = scanner.nextInt();
+                    atmp++;
 
-                if (userGuess == targetNumber) {
-                    System.out.println("Congratulations! You guessed the correct number in " + atmp + " attempts.");
-                    correctGuess = true;
-                } else if (userGuess < targetNumber) {
-                    System.out.println("Too low. Try again.");
-                } else {
-                    System.out.println("Too high. Try again.");
+                    if (userGuess == targetNumber) {
+                        System.out.println("Congratulations! You guessed the correct number in " + atmp + " attempts.");
+                        correctGuess = true;
+                    } else if (userGuess < targetNumber) {
+                        System.out.println("Too low. Try again.");
+                    } else {
+                        System.out.println("Too high. Try again.");
+                    }
+                } catch (java.util.InputMismatchException e) {
+                    System.out.println("Invalid input. Please enter an integer.");
+                    scanner.next(); // consume the invalid input
                 }
             }
 
@@ -49,7 +54,5 @@ public class numberGame {
         System.out.println("Thanks for playing!");
         System.out.println("Total Rounds: " + rounds);
         System.out.println("Total Attempts: " + totalAttempts);
-
-        scanner.close();
     }
 }
